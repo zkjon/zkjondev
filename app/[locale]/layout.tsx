@@ -51,6 +51,14 @@ export async function generateMetadata({
       },
     },
     category: "technology",
+    icons: {
+      icon: [
+        { url: "/icon.svg", type: "image/svg+xml" }
+      ],
+      apple: [
+        { url: "/apple-icon.svg", sizes: "180x180", type: "image/svg+xml" }
+      ],
+    },
     openGraph: {
       type: "website",
       locale: lang,
