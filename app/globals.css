@@ -116,3 +116,41 @@
     background-color: rgba(255, 255, 255, 0.8);
   }
 }
+.pendulum{
+  position: absolute; 
+  width: 220px;
+  height: 180px;
+  background-color: var(--color-primary-300);
+  top: 50%;
+  left: 50%;
+  border-radius: 5%;
+  align-items: center;
+  border-top: 15px solid var(--color-primary-500);
+  transform: translate(-50%, -50%);
+}
+
+.pendulum_box{
+  display: flex;
+  padding: 120px 0 0 10px;
+  position: absolute;
+  flex: 1;
+}
+
+.ball{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: var(--color-primary-600);
+  position: relative;
+  transform-origin: 50% -300%;
+}
+
+.ball::before{
+  content: '';
+  width: 2px;
+  height: 120px;
+  background-color: #000000;
+  left: 18px;
+  top: -120px;
+  position: absolute;
+}
