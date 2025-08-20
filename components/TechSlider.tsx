@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import {
   SiNextdotjs, SiReact, SiTypescript, SiTailwindcss, SiVuedotjs, SiNodedotjs, SiMdx, SiWordpress, SiEslint, SiVite,
@@ -8,6 +8,12 @@ import {
   SiMysql, SiMongodb, SiGit, SiExpress, SiFigma, SiExcalidraw
 } from 'react-icons/si'
 import { FaJava } from 'react-icons/fa'
+import { getTranslations } from '../lib/translations'
+
+interface TechSliderProps {
+  locale?: string;
+}
+
 const technologies = [
   { name: 'Next.js', icon: SiNextdotjs, color: '#000000', category: 'Frontend' },
   { name: 'React', icon: SiReact, color: '#61DAFB', category: 'Frontend' },
@@ -38,15 +44,20 @@ const technologies = [
   { name: 'Prettier', icon: SiPrettier, color: '#F7B93A', category: 'Tools' },
   { name: 'Figma', icon: SiFigma, color: '#F24E1E', category: 'Design' },
   { name: 'Excalidraw', icon: SiExcalidraw, color: '#F24E1E', category: 'Design' },
-  
 ]
 
-export default function TechSlider() {
+export default function TechSlider({ locale = 'es' }: TechSliderProps) {
+  const t = getTranslations(locale);
+  const [mounted, setMounted] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!sliderRef.current) return
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!mounted || !sliderRef.current) return
 
     const slider = sliderRef.current
     
@@ -61,17 +72,17 @@ export default function TechSlider() {
     return () => {
       animation.kill()
     }
-  }, [])
+  }, [mounted])
 
   return (
     <div id="technologies" className="py-20 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            <span className="gradient-text">Tecnologías</span> y Herramientas
+            <span className="gradient-text">{t.technologies.title.split(' ')[0]}</span> {t.technologies.title.split(' ').slice(1).join(' ')}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Especializado en tecnologías modernas para crear experiencias web excepcionales
+            {t.technologies.subtitle}
           </p>
         </div>
 
@@ -111,7 +122,7 @@ export default function TechSlider() {
                       {tech.name}
                     </span>
                     <span className="text-xs text-gray-500 mt-1 font-medium">
-                      {tech.category}
+                      {t.technologies.categories[tech.category as keyof typeof t.technologies.categories]}
                     </span>
                   </div>
                 </div>
@@ -139,7 +150,7 @@ export default function TechSlider() {
                       {tech.name}
                     </span>
                     <span className="text-xs text-gray-500 mt-1 font-medium">
-                      {tech.category}
+                      {t.technologies.categories[tech.category as keyof typeof t.technologies.categories]}
                     </span>
                   </div>
                 </div>
@@ -155,7 +166,7 @@ export default function TechSlider() {
               key={category}
               className="px-4 py-2 bg-primary-100/70 text-primary-700 rounded-full text-sm font-medium backdrop-blur-sm border border-primary-200/50 hover:bg-primary-200/70 transition-all duration-300"
             >
-              {category}
+              {t.technologies.categories[category as keyof typeof t.technologies.categories]}
             </span>
           ))}
         </div>

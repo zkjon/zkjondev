@@ -4,32 +4,59 @@ import { useState, useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Github, Mail, ExternalLink } from 'lucide-react'
+import { getTranslations } from '../lib/translations'
 
 // Registrar el plugin ScrollTrigger
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
-const projects = [
-  {
-    title: 'Forker de Deno',
-    description: 'Contribución y fork del runtime de JavaScript/TypeScript de Deno con mejoras personalizadas.',
-    technologies: ['Deno', 'TypeScript', 'Rust', 'JavaScript'],
-    github: 'https://github.com/zkjon/deno',
-    demo: null,
-    featured: true
-  },
-  {
-    title: 'MDX Reader',
-    description: 'Aplicación web para leer y procesar archivos MDX con soporte completo para componentes React.',
-    technologies: ['Next.js', 'MDX', 'TypeScript', 'React'],
-    github: 'https://github.com/zkjon/mdx-reader',
-    demo: null,
-    featured: true
-  }
-]
+const projects = {
+  es: [
+    {
+      title: 'Forker de Deno',
+      description: 'Contribución y fork del runtime de JavaScript/TypeScript de Deno con mejoras personalizadas.',
+      technologies: ['Deno', 'TypeScript', 'Rust', 'JavaScript'],
+      github: 'https://github.com/zkjon/deno',
+      demo: null,
+      featured: true
+    },
+    {
+      title: 'MDX Reader',
+      description: 'Aplicación web para leer y procesar archivos MDX con soporte completo para componentes React.',
+      technologies: ['Next.js', 'MDX', 'TypeScript', 'React'],
+      github: 'https://github.com/zkjon/mdx-reader',
+      demo: null,
+      featured: true
+    }
+  ],
+  en: [
+    {
+      title: 'Deno Fork',
+      description: 'Contribution and fork of the Deno JavaScript/TypeScript runtime with custom improvements.',
+      technologies: ['Deno', 'TypeScript', 'Rust', 'JavaScript'],
+      github: 'https://github.com/zkjon/deno',
+      demo: null,
+      featured: true
+    },
+    {
+      title: 'MDX Reader',
+      description: 'Web application to read and process MDX files with full support for React components.',
+      technologies: ['Next.js', 'MDX', 'TypeScript', 'React'],
+      github: 'https://github.com/zkjon/mdx-reader',
+      demo: null,
+      featured: true
+    }
+  ]
+}
 
-export default function Projects() {
+interface ProjectsProps {
+  locale?: string;
+}
+
+export default function Projects({ locale = 'es' }: ProjectsProps) {
+  const t = getTranslations(locale)
+  const projectsData = projects[locale as keyof typeof projects] || projects.es
   const [activeProject, setActiveProject] = useState(0)
   const sectionRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
@@ -134,15 +161,15 @@ export default function Projects() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 ref={titleRef} className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Proyectos <span className="gradient-text">Destacados</span>
+            {t.projects.title.split(' ')[0]} <span className="gradient-text">{t.projects.title.split(' ')[1]}</span>
           </h2>
           <p ref={subtitleRef} className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Algunos de los proyectos en los que he trabajado, enfocándome en tecnologías modernas y soluciones innovadoras.
+            {t.projects.description}
           </p>
         </div>
 
         <div ref={projectsRef} className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
+          {projectsData.map((project, index) => (
             <div
               key={index}
               className={`group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
@@ -166,7 +193,7 @@ export default function Projects() {
             >
               {project.featured && (
                 <div className="bg-gradient-to-r from-primary-500 to-blue-500 text-white text-sm font-medium px-6 py-3">
-                  ⭐ Proyecto Destacado
+                  ⭐ {locale === 'es' ? 'Proyecto Destacado' : 'Featured Project'}
                 </div>
               )}
               
@@ -198,7 +225,7 @@ export default function Projects() {
                       className="inline-flex items-center px-6 py-3 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-all duration-300 hover:scale-105 hover:shadow-lg"
                     >
                       <Github size={20} className="mr-2" />
-                      Código
+                      {t.projects.viewCode}
                     </a>
                   )}
                   {project.demo && (
@@ -209,7 +236,7 @@ export default function Projects() {
                       className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all duration-300 hover:scale-105 hover:shadow-lg"
                     >
                       <ExternalLink size={20} className="mr-2" />
-                      Demo
+                      {t.projects.liveDemo}
                     </a>
                   )}
                 </div>
@@ -222,10 +249,10 @@ export default function Projects() {
         <div ref={ctaRef} className="text-center mt-16">
           <div className="bg-gradient-to-r from-primary-50 to-blue-50 rounded-2xl p-8 md:p-12">
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-              ¿Interesado en ver más proyectos o colaborar?
+              {t.projects.ctaTitle}
             </h3>
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              Siempre estoy abierto a nuevas oportunidades y proyectos emocionantes. ¡Conectemos!
+              {t.projects.ctaDescription}
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <a
@@ -235,14 +262,14 @@ export default function Projects() {
                 className="inline-flex items-center px-8 py-4 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-all duration-300 hover:scale-105 hover:shadow-xl font-medium"
               >
                 <Github size={24} className="mr-3" />
-                Ver en GitHub
+                {t.projects.viewGithub}
               </a>
               <a
                 href="mailto:fovusyts@gmail.com"
                 className="inline-flex items-center px-8 py-4 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all duration-300 hover:scale-105 hover:shadow-xl font-medium"
               >
                 <Mail size={24} className="mr-3" />
-                Contactar
+                {t.projects.contact}
               </a>
             </div>
           </div>

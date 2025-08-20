@@ -1,10 +1,18 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { Github, Linkedin, Twitter, Mail, MapPin, Briefcase } from 'lucide-react'
+import { getTranslations } from '../lib/translations'
+import LanguageSelector from './LanguageSelector'
 
-export default function Header() {
+interface HeaderProps {
+  locale?: string;
+}
+
+export default function Header({ locale = 'es' }: HeaderProps) {
+  const t = getTranslations(locale);
+  const [mounted, setMounted] = useState(false);
   const headerRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const subtitleRef = useRef<HTMLHeadingElement>(null)
@@ -14,6 +22,12 @@ export default function Header() {
   const visualRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!mounted) return
+
     const tl = gsap.timeline()
 
     // Animación de entrada del título
@@ -151,10 +165,103 @@ export default function Header() {
       )
     }
 
-  }, [])
+  }, [mounted])
+
+  if (!mounted) {
+    return (
+      <header className="min-h-screen bg-gradient-to-br from-primary-50 to-blue-50 flex items-center relative">
+        <div className="absolute top-6 right-6 z-10">
+          <LanguageSelector />
+        </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="mb-6">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+                  Jon Imanol{' '}
+                  <span className="gradient-text bg-gradient-to-r from-primary-600 via-blue-600 to-primary-600 bg-[length:200%_100%]">
+                    Ruiz Hermoso
+                  </span>
+                </h1>
+                <h2 className="text-xl md:text-2xl text-gray-600 mb-6">
+                  {locale === 'es' ? (
+                    <>
+                      Desarrollador <strong>Full-Stack</strong> especializado en frameworks modernos de frontend, servidores <strong>MCP</strong> y soluciones <strong>IA-First</strong>.
+                    </>
+                  ) : (
+                    <>
+                      <strong>Full-Stack</strong> Developer specialized in modern frontend frameworks, <strong>MCP</strong> servers and <strong>AI-First</strong> solutions.
+                    </>
+                  )}
+                </h2>
+              </div>
+              
+              <div className="flex flex-wrap gap-4 text-gray-600 mb-8">
+                <div className="flex items-center">
+                  <MapPin size={18} className="mr-2 text-primary-600" />
+                  <span>{t.header.location}</span>
+                </div>
+                <div className="flex items-center">
+                  <Briefcase size={18} className="mr-2 text-primary-600" />
+                  <span>{t.header.workingAt} <a href="https://www.apis.es" target="_blank" rel="noopener noreferrer">Apis</a></span>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-4 mb-8">
+                <a href="https://github.com/zkjon" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-all duration-200 hover:scale-105 hover:shadow-xl">
+                  <Github size={20} className="mr-2" />
+                  GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/zkjon/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200 hover:scale-105 hover:shadow-xl">
+                  <Linkedin size={20} className="mr-2" />
+                  LinkedIn
+                </a>
+                <a href="https://x.com/zkjondev" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-all duration-200 hover:scale-105 hover:shadow-xl">
+                  <Twitter size={20} className="mr-2" />
+                  Twitter
+                </a>
+                <a href="mailto:fovusyts@gmail.com" className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all duration-200 hover:scale-105 hover:shadow-xl">
+                  <Mail size={20} className="mr-2" />
+                  {t.header.contact}
+                </a>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a href="#projects" className="inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all duration-200 font-medium hover:scale-105 hover:shadow-xl">
+                  {t.header.viewProjects}
+                </a>
+                <a href="#technologies" className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary-600 text-primary-600 rounded-lg hover:bg-primary-50 transition-all duration-200 font-medium hover:scale-105">
+                  {t.header.technologies}
+                </a>
+              </div>
+            </div>
+
+            <div className="hidden lg:block">
+              <div className="relative">
+                <div className="w-80 h-80 bg-gradient-to-br from-primary-400 to-blue-500 rounded-full opacity-20"></div>
+                <div className="absolute top-10 left-10 w-60 h-60 bg-gradient-to-br from-blue-400 to-primary-500 rounded-full opacity-30"></div>
+                <div className="absolute top-20 left-20 w-40 h-40 bg-gradient-to-br from-primary-500 to-blue-400 rounded-full opacity-40"></div>
+              </div>
+            </div>
+          </div>
+
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+              <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse"></div>
+            </div>
+          </div>
+        </div>
+      </header>
+    )
+  }
 
   return (
-    <header ref={headerRef} className="min-h-screen bg-gradient-to-br from-primary-50 to-blue-50 flex items-center">
+    <header ref={headerRef} className="min-h-screen bg-gradient-to-br from-primary-50 to-blue-50 flex items-center relative">
+      {/* Language Selector */}
+      <div className="absolute top-6 right-6 z-10">
+        <LanguageSelector />
+      </div>
+      
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Contenido principal */}
@@ -166,8 +273,19 @@ export default function Header() {
                   Ruiz Hermoso
                 </span>
               </h1>
-                <h2 ref={subtitleRef} className="text-xl md:text-2xl text-gray-600 mb-6">
-                Desarrollador <strong>Full-Stack</strong> especializado en frameworks modernos de frontend, servidores <strong>MCP</strong> y soluciones <strong>IA-First</strong>.
+                <h2 
+                  ref={subtitleRef} 
+                  className="text-xl md:text-2xl text-gray-600 mb-6"
+                >
+                  {locale === 'es' ? (
+                    <>
+                      Desarrollador <strong>Full-Stack</strong> especializado en frameworks modernos de frontend, servidores <strong>MCP</strong> y soluciones <strong>IA-First</strong>.
+                    </>
+                  ) : (
+                    <>
+                      <strong>Full-Stack</strong> Developer specialized in modern frontend frameworks, <strong>MCP</strong> servers and <strong>AI-First</strong> solutions.
+                    </>
+                  )}
                 </h2>
             </div>
 
@@ -175,11 +293,11 @@ export default function Header() {
             <div ref={infoRef} className="flex flex-wrap gap-4 text-gray-600 mb-8">
               <div className="flex items-center">
                 <MapPin size={18} className="mr-2 text-primary-600" />
-                <span>España</span>
+                <span>{t.header.location}</span>
               </div>
               <div className="flex items-center">
                 <Briefcase size={18} className="mr-2 text-primary-600" />
-                <span>Trabajando en <a href="https://www.apis.es" target="_blank" rel="noopener noreferrer">Apis</a></span>
+                <span>{t.header.workingAt} <a href="https://www.apis.es" target="_blank" rel="noopener noreferrer">Apis</a></span>
               </div>
             </div>
 
@@ -217,7 +335,7 @@ export default function Header() {
                 className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all duration-200 hover:scale-105 hover:shadow-xl"
               >
                 <Mail size={20} className="mr-2" />
-                Contacto
+                {t.header.contact}
               </a>
             </div>
 
@@ -227,13 +345,13 @@ export default function Header() {
                 href="#projects"
                 className="inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all duration-200 font-medium hover:scale-105 hover:shadow-xl"
               >
-                Ver Proyectos
+                {t.header.viewProjects}
               </a>
               <a
                 href="#technologies"
                 className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary-600 text-primary-600 rounded-lg hover:bg-primary-50 transition-all duration-200 font-medium hover:scale-105"
               >
-                Tecnologías
+                {t.header.technologies}
               </a>
             </div>
           </div>
