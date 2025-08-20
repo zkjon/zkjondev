@@ -32,7 +32,7 @@ export default async function LocalePage({ params }: PageProps) {
               {t.footer.description}
             </p>
             <a
-              href="mailto:fovusyts@gmail.com"
+              href="mailto:focusyts@gmail.com"
               className="inline-flex items-center px-8 py-4 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-200 font-medium"
             >
               {t.footer.sendMessage}

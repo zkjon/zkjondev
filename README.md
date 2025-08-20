@@ -139,7 +139,7 @@ Consulta el archivo [LICENSE](./LICENSE) para más detalles sobre los términos 
 
 ## 📧 Contacto
 
-- **Email**: [fovusyts@gmail.com](mailto:fovusyts@gmail.com)
+- **Email**: [focusyts@gmail.com](mailto:focusyts@gmail.com)
 - **GitHub**: [@zkjon](https://github.com/zkjon)
 - **LinkedIn**: [zkjon](https://www.linkedin.com/in/zkjon/)
 - **Twitter**: [@zkjondev](https://x.com/zkjondev)

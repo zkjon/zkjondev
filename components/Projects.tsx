@@ -265,7 +265,7 @@ export default function Projects({ locale = 'es' }: ProjectsProps) {
                 {t.projects.viewGithub}
               </a>
               <a
-                href="mailto:fovusyts@gmail.com"
+                href="mailto:focusyts@gmail.com"
                 className="inline-flex items-center px-8 py-4 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all duration-300 hover:scale-105 hover:shadow-xl font-medium"
               >
                 <Mail size={24} className="mr-3" />

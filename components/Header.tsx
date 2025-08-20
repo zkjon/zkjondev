@@ -220,7 +220,7 @@ export default function Header({ locale = 'es' }: HeaderProps) {
                   <Twitter size={20} className="mr-2" />
                   Twitter
                 </a>
-                <a href="mailto:fovusyts@gmail.com" className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all duration-200 hover:scale-105 hover:shadow-xl">
+                <a href="mailto:focusyts@gmail.com" className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all duration-200 hover:scale-105 hover:shadow-xl">
                   <Mail size={20} className="mr-2" />
                   {t.header.contact}
                 </a>
@@ -331,7 +331,7 @@ export default function Header({ locale = 'es' }: HeaderProps) {
                 Twitter
               </a>
               <a
-                href="mailto:fovusyts@gmail.com"
+                href="mailto:focusyts@gmail.com"
                 className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all duration-200 hover:scale-105 hover:shadow-xl"
               >
                 <Mail size={20} className="mr-2" />
