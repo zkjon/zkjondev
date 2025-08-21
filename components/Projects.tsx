@@ -22,10 +22,26 @@ const projects = {
       featured: true
     },
     {
+      title: 'MCP Weather Server',
+      description: 'Servidor MCP que proporciona información meteorológica en tiempo real usando la API de Open-Meteo.',
+      technologies: ['TypeScript', 'MCP SDK', 'Open-Meteo API', 'Bun'],
+      github: 'https://github.com/zkjon/mcp-weather',
+      demo: null,
+      featured: true
+    },
+    {
       title: 'MDX Reader',
       description: 'Aplicación web para leer y procesar archivos MDX con soporte completo para componentes React.',
       technologies: ['Next.js', 'MDX', 'TypeScript', 'React'],
       github: 'https://github.com/zkjon/mdx-reader',
+      demo: null,
+      featured: true
+    },
+    {
+      title: 'zkjondev Portfolio',
+      description: 'Mi portafolio personal desarrollado con Next.js, featuring animaciones GSAP y diseño responsive.',
+      technologies: ['Next.js', 'TypeScript', 'React', 'TailwindCSS', 'GSAP', 'Framer Motion'],
+      github: 'https://github.com/zkjon/zkjondev',
       demo: null,
       featured: true
     }
@@ -40,13 +56,30 @@ const projects = {
       featured: true
     },
     {
+      title: 'MCP Weather Server',
+      description: 'Servidor MCP que proporciona información meteorológica en tiempo real usando la API de Open-Meteo.',
+      technologies: ['TypeScript', 'MCP SDK', 'Open-Meteo API', 'Bun'],
+      github: 'https://github.com/zkjon/mcp-weather',
+      demo: null,
+      featured: true
+    },
+    {
       title: 'MDX Reader',
       description: 'Web application to read and process MDX files with full support for React components.',
       technologies: ['Next.js', 'MDX', 'TypeScript', 'React'],
       github: 'https://github.com/zkjon/mdx-reader',
       demo: null,
       featured: true
+    },
+    {
+      title: 'zkjondev Portfolio',
+      description: 'My personal portfolio developed with Next.js, featuring GSAP animations and responsive design.',
+      technologies: ['Next.js', 'TypeScript', 'React', 'TailwindCSS', 'GSAP', 'Framer Motion'],
+      github: 'https://github.com/zkjon/zkjondev',
+      demo: null,
+      featured: true
     }
+
   ]
 }
 
