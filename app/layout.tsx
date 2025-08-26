@@ -1,8 +1,8 @@
 // Layout raíz vacío - solo maneja la estructura base de la aplicación
 export default function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  return children;
+	return children;
 }
