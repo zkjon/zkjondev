@@ -59,9 +59,9 @@ export async function generateMetadata({
 		},
 		category: 'technology',
 		icons: {
-			icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
+			icon: [{ url: '/favicon.ico', type: 'image/x-icon' }],
 			apple: [
-				{ url: '/apple-icon.svg', sizes: '180x180', type: 'image/svg+xml' },
+				{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
 			],
 		},
 		openGraph: {

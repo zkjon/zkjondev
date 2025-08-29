@@ -53,6 +53,6 @@ export function middleware(request: NextRequest) {
 export const config = {
 	matcher: [
 		// Excluir archivos internos de Next.js y archivos estáticos
-		'/((?!_next/static|_next/image|favicon.ico|.*\\.png$|.*\\.jpg$|.*\\.svg$).*)',
+		'/((?!_next/static|_next/image|favicon.ico|.*\\.png$|.*\\.jpg$|.*.*\\.ico$).*)',
 	],
 };
