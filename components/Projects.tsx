@@ -14,11 +14,11 @@ if (typeof window !== 'undefined') {
 const projects = {
 	es: [
 		{
-			title: 'Forker de Deno',
+			title: 'Live JS',
 			description:
-				'Contribución y fork del runtime de JavaScript/TypeScript de Deno con mejoras personalizadas.',
-			technologies: ['Deno', 'TypeScript', 'Rust', 'JavaScript'],
-			github: 'https://github.com/zkjon/deno',
+				'Aplicación web moderna para escribir, ejecutar y compartir código JavaScript en tiempo real con una interfaz minimalista y elegante.',
+			technologies: ['Nuxt 3', 'Vue 3', 'TypeScript', 'TailwindCSS', 'Monaco Editor', 'Node.js'],
+			github: 'https://github.com/zkjon/live-js',
 			demo: null,
 			featured: true,
 		},
@@ -41,23 +41,25 @@ const projects = {
 			featured: true,
 		},
 		{
-			title: 'zkjondev Portfolio',
+			title: 'Forker de Deno',
 			description:
-				'Mi portafolio personal desarrollado con Next.js, featuring animaciones GSAP y diseño responsive.',
-			technologies: [
-				'Next.js',
-				'TypeScript',
-				'React',
-				'TailwindCSS',
-				'GSAP',
-				'Framer Motion',
-			],
-			github: 'https://github.com/zkjon/zkjondev',
+				'Contribución y fork del runtime de JavaScript/TypeScript de Deno con mejoras personalizadas.',
+			technologies: ['Deno', 'TypeScript', 'Rust', 'JavaScript'],
+			github: 'https://github.com/zkjon/deno',
+			demo: null,
+			featured: true,
+		}		
+	],
+	en: [
+		{
+			title: 'Live JS',
+			description:
+				'Modern web application for writing, executing, and sharing JavaScript code in real-time with a minimalist and elegant interface.',
+			technologies: ['Nuxt 3', 'Vue 3', 'TypeScript', 'TailwindCSS', 'Monaco Editor', 'Node.js'],
+			github: 'https://github.com/zkjon/live-js',
 			demo: null,
 			featured: true,
 		},
-	],
-	en: [
 		{
 			title: 'Deno Fork',
 			description:
@@ -84,23 +86,7 @@ const projects = {
 			github: 'https://github.com/zkjon/mdx-reader',
 			demo: null,
 			featured: true,
-		},
-		{
-			title: 'zkjondev Portfolio',
-			description:
-				'My personal portfolio developed with Next.js, featuring GSAP animations and responsive design.',
-			technologies: [
-				'Next.js',
-				'TypeScript',
-				'React',
-				'TailwindCSS',
-				'GSAP',
-				'Framer Motion',
-			],
-			github: 'https://github.com/zkjon/zkjondev',
-			demo: null,
-			featured: true,
-		},
+		}
 	],
 };
 
@@ -111,7 +97,7 @@ interface ProjectsProps {
 export default function Projects({ locale = 'es' }: ProjectsProps) {
 	const t = getTranslations(locale);
 	const projectsData = projects[locale as keyof typeof projects] || projects.es;
-	const [activeProject, setActiveProject] = useState(0);
+	const [, setActiveProject] = useState(0);
 	const sectionRef = useRef<HTMLDivElement>(null);
 	const titleRef = useRef<HTMLHeadingElement>(null);
 	const subtitleRef = useRef<HTMLParagraphElement>(null);
