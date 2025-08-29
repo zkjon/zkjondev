@@ -8,6 +8,7 @@ import {
 	SiTypescript,
 	SiTailwindcss,
 	SiVuedotjs,
+	SiNuxtdotjs,
 	SiNodedotjs,
 	SiMdx,
 	SiWordpress,
@@ -49,6 +50,7 @@ const technologies = [
 	{ name: 'React', icon: SiReact, color: '#61DAFB', category: 'Frontend' },
 	{ name: 'Astro', icon: SiAstro, color: '#FF5D01', category: 'Frontend' },
 	{ name: 'Vue.js', icon: SiVuedotjs, color: '#4FC08D', category: 'Frontend' },
+	{ name: 'Nuxt.js', icon: SiNuxtdotjs, color: '#00DC82', category: 'Frontend' },
 	{ name: 'Express', icon: SiExpress, color: '#000000', category: 'Backend' },
 	{
 		name: 'TypeScript',
